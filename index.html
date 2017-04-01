@@ -132,14 +132,13 @@
 					e = d.documentElement,
 					g = d.getElementsByTagName('body')[0],
 					x = w.innerWidth || e.clientWidth || g.clientWidth,
-					y = w.innerHeight|| e.clientHeight|| g.clientHeight;
-				console.log(x + ' × ' + y);
+					y = w.innerHeight || e.clientHeight || g.clientHeight;
 
 				var amountOfRows = (y / 65)
 				var original = document.getElementById('original');
-				original.id = "";
+				original.id = '';
 
-				for( var i = 0; i < amountOfRows; i++ ){
+				for (var i = 0; i < amountOfRows; i++) {
 					var clone = original.cloneNode(true);
 					original.parentNode.appendChild(clone);
 				}
@@ -148,12 +147,12 @@
 					el.addEventListener('click', popTheBubble, false)
 				});
 			});
-			
+
 			function popTheBubble() {
 				this.removeEventListener('click', popTheBubble, false);
 				sound = new Audio(puchi); 
 				sound.play();
-				this.className += " bubble--broken"
+				this.className += ' bubble--broken'
 			}
 		</script>
 
