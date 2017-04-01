@@ -17,6 +17,16 @@ body {
 	display: table;
 }
 
+.github {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	display: block;
+	height: 100px;
+	width: 100px;
+	z-index: 999;
+}
+
 #puchi {
 	display: table-cell; 
     text-align: center; /* horizontal */
