@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Google&#39;s Bubble Wrap</title>
+		<meta name="description" content="Who needs physical bubble wrap when you have this? Cloned from Google&#39;s new April&#39;s Fool project, this is here to stay.">
+		<meta name="keywords" content="bubble,wrap,google,github,pitu">
+  		<meta name="author" content="github/pitu">
+  		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  		<link type='text/css' rel='stylesheet' href='files/css/style.css' />
+	</head>
+
+	<body>
+		<audio id="audio-player"></audio>
+		<section class="puchi" id="puchi">
+			<div class="h-c-page">
+				<div class="puchi__row" id="original">
+					<div class="bubble bubble--3">
+						<div class="bubble__base"></div>
+						<div class="bubble__top"></div>
+					</div>
+					<div class="bubble bubble--3">
+						<div class="bubble__base"></div>
+						<div class="bubble__top"></div>
+					</div>
+					<div class="bubble bubble--2">
+						<div class="bubble__base"></div>
+						<div class="bubble__top"></div>
+					</div>
+					<div class="bubble bubble--2">
+						<div class="bubble__base"></div>
+						<div class="bubble__top"></div>
+					</div>
+					<div class="bubble bubble--2">
+						<div class="bubble__base"></div>
+						<div class="bubble__top"></div>
+					</div>
+					<div class="bubble bubble--3">
+						<div class="bubble__base"></div>
+						<div class="bubble__top"></div>
+					</div>
+					<div class="bubble bubble--1">
+						<div class="bubble__base"></div>
+						<div class="bubble__top"></div>
+					</div>
+					<div class="bubble bubble--1">
+						<div class="bubble__base"></div>
+						<div class="bubble__top"></div>
+					</div>
+					<div class="bubble bubble--2">
+						<div class="bubble__base"></div>
+						<div class="bubble__top"></div>
+					</div>
+					<div class="bubble bubble--1">
+						<div class="bubble__base"></div>
+						<div class="bubble__top"></div>
+					</div>
+					<div class="bubble bubble--1">
+						<div class="bubble__base"></div>
+						<div class="bubble__top"></div>
+					</div>
+					<div class="bubble bubble--3">
+						<div class="bubble__base"></div>
+						<div class="bubble__top"></div>
+					</div>
+					<div class="bubble bubble--1">
+						<div class="bubble__base"></div>
+						<div class="bubble__top"></div>
+					</div>
+					<div class="bubble bubble--3">
+						<div class="bubble__base"></div>
+						<div class="bubble__top"></div>
+					</div>
+					<div class="bubble bubble--3">
+						<div class="bubble__base"></div>
+						<div class="bubble__top"></div>
+					</div>
+					<div class="bubble bubble--2">
+						<div class="bubble__base"></div>
+						<div class="bubble__top"></div>
+					</div>
+					<div class="bubble bubble--2">
+						<div class="bubble__base"></div>
+						<div class="bubble__top"></div>
+					</div>
+					<div class="bubble bubble--1">
+						<div class="bubble__base"></div>
+						<div class="bubble__top"></div>
+					</div>
+					<div class="bubble bubble--2">
+						<div class="bubble__base"></div>
+						<div class="bubble__top"></div>
+					</div>
+					<div class="bubble bubble--3">
+						<div class="bubble__base"></div>
+						<div class="bubble__top"></div>
+					</div>
+					<div class="bubble bubble--2">
+						<div class="bubble__base"></div>
+						<div class="bubble__top"></div>
+					</div>
+					<div class="bubble bubble--3">
+						<div class="bubble__base"></div>
+						<div class="bubble__top"></div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<script type="text/javascript">
+			var puchi = 'files/sounds/puchi.ogg';
+
+			document.addEventListener('DOMContentLoaded', function () {
+
+				// Let's check if the browser can play opus, fall back to mp3 if it can't
+				const player = document.getElementById('audio-player');
+				const canPlayOpus = (typeof player.canPlayType === 'function' && player.canPlayType('audio/ogg; codecs="opus"') !== '');
+				const isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+				const isIE = /*@cc_on!@*/false || !!document.documentMode;
+				const isEdge = !isIE && !!window.StyleMedia;
+
+				if (isSafari || isIE || isEdge || !canPlayOpus)
+					puchi = 'files/sounds/puchi.mp3';
+
+				var w = window,
+					d = document,
+					e = d.documentElement,
+					g = d.getElementsByTagName('body')[0],
+					x = w.innerWidth || e.clientWidth || g.clientWidth,
+					y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+				console.log(x + ' × ' + y);
+
+				var amountOfRows = (y / 65)
+				var original = document.getElementById('original');
+				original.id = "";
+
+				for( var i = 0; i < amountOfRows; i++ ){
+					var clone = original.cloneNode(true);
+					original.parentNode.appendChild(clone);
+				}
+
+				document.querySelectorAll('.bubble').forEach(function(el) {
+					el.addEventListener('click', popTheBubble, false)
+				});
+			});
+			
+			function popTheBubble() {
+				this.removeEventListener('click', popTheBubble, false);
+				sound = new Audio(puchi); 
+				sound.play();
+				this.className += " bubble--broken"
+			}
+		</script>
+
+	</body>
