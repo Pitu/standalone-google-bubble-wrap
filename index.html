@@ -150,6 +150,7 @@
 
 			function popTheBubble() {
 				this.removeEventListener('click', popTheBubble, false);
+				navigator.vibrate(100);
 				sound = new Audio(puchi); 
 				sound.play();
 				this.className += ' bubble--broken'
